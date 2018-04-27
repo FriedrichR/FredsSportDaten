@@ -1,4 +1,4 @@
 import core.config as cf
 
 
-print("Hello World!")
+print("Hello Freddy!")
