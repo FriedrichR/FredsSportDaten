@@ -1,22 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
+#import CSV file
+data = pd.read_csv('../data/SportyFreddy.csv', delimiter=';')
+print(data.head())
 
-print("Hello Freddy!")
+date = data['Date']
+weight = data['Weight']
 
-
-def f(t):
-    return np.exp(-t) * np.cos(2*np.pi*t)
-
-t1 = np.arange(0.0, 5.0, 0.1)
-t2 = np.arange(0.0, 5.0, 0.02)
-
-plt.figure(1)
-plt.subplot(211)
-plt.plot(t1, f(t1), 'bo', t2, f(t2), 'k')
-
-plt.subplot(212)
-plt.plot(t2, np.cos(2*np.pi*t2), 'r--')
+#plot
+plt.plot(date, weight, date, weight, 'bo')
+plt.xlabel('Date')
+plt.ylabel('Weight [kg]')
+plt.title('Weight')
 plt.show()
-
-# this is a test change to test git
