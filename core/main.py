@@ -6,6 +6,8 @@ import pandas as pd
 from datetime import datetime, date
 from sklearn.linear_model import LinearRegression
 
+import core.DiagramLabeling as DL
+
 #import CSV file
 from pandas import DataFrame, Series
 from pandas.core.generic import NDFrame
@@ -17,7 +19,6 @@ headers = list(data)
 data_date_str = data['Date']
 #data_weight = data['Weight']
 
-
 #convert date strings from CSV to unix
 data_date = []
 data_date_pred = []
@@ -27,7 +28,9 @@ for dates in data_date_str:
     data_date_pred.append([a.timestamp()])
 
 for header in headers[1:]:
-    print(header)
+
+    labeling = DL.DiagramLabeling()
+    title, y_label = labeling.get_labels(header)
 
     data_values = data[header]
 
@@ -49,6 +52,6 @@ for header in headers[1:]:
     plt.plot(data_date, data_values, 'bo', ms=10.0, mfc='xkcd:grey', mec='xkcd:grey')
     plt.plot(data_date, predicted,  linewidth=4.0)
     plt.xlabel('Date', size='x-large')
-    plt.ylabel(header + ' [kg]', size='x-large')
-    plt.title(header, size='x-large')
+    plt.ylabel(y_label, size='x-large')
+    plt.title(title, size='x-large')
     plt.show()
